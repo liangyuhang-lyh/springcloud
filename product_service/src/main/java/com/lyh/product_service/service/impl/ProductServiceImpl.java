@@ -2,9 +2,10 @@ package com.lyh.product_service.service.impl;
 
 import com.lyh.product_service.domain.Product;
 import com.lyh.product_service.service.ProductService;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
-
+@Service
 public class ProductServiceImpl implements ProductService{
 
     private static final Map<Integer,Product> daoMap=new HashMap<>();

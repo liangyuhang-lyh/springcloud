@@ -1,6 +1,8 @@
 package com.lyh.product_service.domain;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable{
     private int id;
     private String name;
     private int price;
