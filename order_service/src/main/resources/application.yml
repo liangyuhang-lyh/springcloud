@@ -12,6 +12,11 @@ eureka:
 spring:
   application:
     name: order-service
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    timeout: 2000
 #自定义负载均衡策略
 product-service:
   ribbon:
@@ -25,3 +30,28 @@ feign:
       default:
         connectTimeout: 2000
         readTimeout: 2000
+#把hystrix超时时间禁用
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        timeout:
+#          enabled: false
+
+#execution.isolation.thread.timeoutInMilliseconds=4000
+
+#设置超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000
+
+#暴露全部的监控信息
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

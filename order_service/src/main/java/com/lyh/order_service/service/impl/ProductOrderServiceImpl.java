@@ -24,6 +24,9 @@ public class ProductOrderServiceImpl implements ProductOrderService{
     private ProductClient productClient;
     @Override
     public ProductOrder save(int userId, int productId) {
+        if(userId == 1){
+            return null;
+        }
         //調用方式一
         //Map<String,Object> productMap = restTemplate.getForObject("http://product-service/api/v1/product/findById?id=" + productId, MAp.class);
         //调用方式二
