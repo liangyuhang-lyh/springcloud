@@ -1,23 +1,25 @@
 server:
   port: 9000
 
-#·şÎñµÄÃû³Æ
+#æœåŠ¡çš„åç§°
 spring:
   application:
     name: api-gateway
 
-#Ö¸¶¨×¢²áÖĞĞÄµØÖ·
+#æŒ‡å®šæ³¨å†Œä¸­å¿ƒåœ°å€
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 #/order-service/api/v1/order/save?user_id=2&product_id=1
-#×Ô¶¨ÒåÂ·ÓÉÓ³Éä
+#è‡ªå®šä¹‰è·¯ç”±æ˜ å°„
 zuul:
   routes:
-    order-service: /apigateway/**
-    product-service: /apigateway/**
-  #Í³Ò»Èë¿ÚÎªÉÏÃæµÄÅäÖÃ£¬ÆäËûÈë¿ÚºöÂÔ
+    order-service: /apigateway/order/**
+    product-service: /apigateway/product/**
+  #ç»Ÿä¸€å…¥å£ä¸ºä¸Šé¢çš„é…ç½®ï¼Œå…¶ä»–å…¥å£å¿½ç•¥
   ignored-patterns: /*-service/**
-  #ºöÂÔÕû¸ö·şÎñ£¬¶ÔÍâÌá¹©½Ó¿Ú
+  #å¿½ç•¥æ•´ä¸ªæœåŠ¡ï¼Œå¯¹å¤–æä¾›æ¥å£
   #ignored-services: product-service
+  #å¤„ç†httpè¯·æ±‚å¤´ä¸ºç©ºçš„é—®é¢˜
+  sensitive-headers:

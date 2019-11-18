@@ -23,7 +23,13 @@ public class OrderController {
     private StringRedisTemplate redisTemplate;
     @RequestMapping("save")
     @HystrixCommand(fallbackMethod = "saveOrderFail")
-    public Object save(@RequestParam("user_id") int userId,@RequestParam("product_id") int productId){
+    public Object save(@RequestParam("user_id") int userId,@RequestParam("product_id") int productId,HttpServletRequest request){
+        //postman模拟请求，zuul网关会过滤请求头的Cookie,Set-Cookie,Authorization
+        String token=request.getHeader("token");
+        String cookie=request.getHeader("cookie");
+        System.out.println("token="+token);    //正常取出
+        System.out.println("cookie="+cookie);   //取出为null
+
         Map<String,Object> data=new HashMap<>();
         data.put("code",0);
         data.put("data",productOrderService.save(userId,productId));
